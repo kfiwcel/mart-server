@@ -20,6 +20,11 @@ class Category extends Model
     {
         return $this->belongsTo(self::class,'parent_id');
     }
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
 
     public function scopeRoots(Builder $builder)
     {
@@ -30,4 +35,6 @@ class Category extends Model
     {
         $builder->orderBy('order',$direction);
     }
+
+
 }

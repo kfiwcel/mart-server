@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\CategoryResource;
-use App\Models\Category;
+use App\Http\Resources\ProductIndexResource;
+use App\Http\Resources\ProductResource;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +16,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return CategoryResource::collection(
-            Category::with('children')->roots()->sort()->get()
-        );
+        $products=Product::filter()->paginate(10);//filter()函数对应models类中的scopeFilter()函数：查询过滤
+        return ProductIndexResource::collection($products);
     }
 
     /**
@@ -35,11 +35,11 @@ class CategoryController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return ProductResource
      */
-    public function show($id)
+    public function show(Product $product)
     {
-        //
+        return new ProductResource($product);
     }
 
     /**
