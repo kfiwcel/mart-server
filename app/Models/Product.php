@@ -12,13 +12,17 @@ class Product extends Model
     use HasFactory;
 
     protected $guarded=[];
+    //将字段映射成对象
+    protected $casts=[
+        'specification'=>'object'
+    ];
 
-    public function category()
+    public function category(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Category::class);
     }
 
-    public function getRouteKeyName()
+    public function getRouteKeyName(): string
     {
         return 'slug';
     }
@@ -28,6 +32,7 @@ class Product extends Model
         //查询过滤
         $allow_filters=[
             'category',
+            'category_id',
             'name',
             'price',
             'brand'

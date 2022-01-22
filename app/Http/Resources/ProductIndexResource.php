@@ -19,6 +19,8 @@ class ProductIndexResource extends JsonResource
             'slug'=>$this->slug,
             'desc'=>$this->description,
             'price'=>$this->price,
+            'category_id'=>$this->category_id
+
         ];
     }
 }

@@ -16,7 +16,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products=Product::filter()->paginate(10);//filter()函数对应models类中的scopeFilter()函数：查询过滤
+        $products=Product::filter()->paginate(8);//filter()函数对应models类中的scopeFilter()函数：查询过滤
         return ProductIndexResource::collection($products);
     }
 
