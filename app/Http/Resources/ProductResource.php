@@ -18,12 +18,15 @@ class ProductResource extends JsonResource
             'name'=>$this->name,
             'slug'=>$this->slug,
             'desc'=>$this->description,
-            'price'=>$this->price,
+            'price'=>'￥ '.$this->price/100,
             'image'=>$this->poster,
 
             'brand'=>$this->brand,
             'category'=>$this->category->name,
-            'category_id'=>$this->category_id
+            'category_id'=>$this->category_id,
+
+            'specs'=>$this->specification,
+            'variations'=>ProductVariationResource::collection($this->variations)
         ];
     }
 }
